@@ -1,10 +1,10 @@
 package ri.library.entity
 
-import org.springframework.data.annotation.Id
-import org.springframework.data.relational.core.mapping.Table
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 import java.util.*
 
-@Table("Users")
+@Table(name = "Users")
 data class UserEntity(
     @Id val id: UUID?,
     val login: String,

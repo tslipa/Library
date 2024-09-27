@@ -1,12 +1,11 @@
 package ri.library.entity
 
-import org.springframework.data.annotation.Id
-import org.springframework.data.relational.core.mapping.Table
-import ri.library.enum.BookStatus
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 import ri.library.enum.OrderStatus
 import java.util.*
 
-@Table("Orders")
+@Table(name = "Orders")
 data class OrderEntity(
     @Id val id: UUID?,
     val userId: UUID,
