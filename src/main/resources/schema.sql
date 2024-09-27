@@ -1,5 +1,5 @@
-CREATE TABLE IF NOT EXISTS Users (
-    id          VARCHAR(100)    PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS users (
+    id          VARCHAR(36)     PRIMARY KEY,
     login       VARCHAR(100)    NOT NULL,
     email       VARCHAR(100)    NOT NULL,
     password    VARCHAR(100)    NOT NULL,
@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS Users (
     surname     VARCHAR(100)    NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Books (
-    id          VARCHAR(100)    PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS books (
+    id          VARCHAR(36)    PRIMARY KEY,
     title       VARCHAR(100)    NOT NULL,
     author      VARCHAR(100)    NOT NULL,
     year        VARCHAR(100)    NULL,
@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS Books (
     url         VARCHAR(100)    NULL
 );
 
-CREATE TABLE IF NOT EXISTS Orders (
-    id          VARCHAR(100)    PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS orders (
+    id          VARCHAR(36)    PRIMARY KEY,
     userId      VARCHAR(100)    NOT NULL,
     bookId      VARCHAR(100)    NOT NULL,
     status      VARCHAR(100)    NOT NULL,

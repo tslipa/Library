@@ -1,13 +1,15 @@
 package ri.library.entity
 
+import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import ri.library.enum.BookStatus
 import java.util.*
 
-@Table(name = "Books")
+@Entity
+@Table(name = "books")
 data class BookEntity(
-    @Id val id: UUID?,
+    @Id val id: String = UUID.randomUUID().toString(),
     val title: String,
     val author: String,
     val year: String,
@@ -16,4 +18,6 @@ data class BookEntity(
     val description: String?,
     val status: BookStatus,
     val url: String?
-)
+) {
+    constructor() : this(UUID.randomUUID().toString(), "", "", "", "", UUID.randomUUID(), null, BookStatus.FREE, null)
+}
