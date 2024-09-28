@@ -8,5 +8,4 @@ class LibraryApplication
 
 fun main(args: Array<String>) {
     runApplication<LibraryApplication>(*args)
-    print("Hello world!")
 }
