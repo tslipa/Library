@@ -13,21 +13,21 @@ import java.util.*
 class BookService(
     private val bookRepository: BookRepository
 ) {
-    fun addBook(book: BookEntity) : BookDTO {
+    fun save(book: BookEntity) : BookDTO {
         val savedEntity = bookRepository.save(book)
         return mapEntityToDto(savedEntity)
     }
 
-    fun deleteBook(book: BookEntity) {
+    fun delete(book: BookEntity) {
         bookRepository.delete(book)
     }
 
-    fun getBookById(id: String) : BookDTO {
+    fun getById(id: String) : BookDTO {
         val foundEntity = bookRepository.findById(id).orElseThrow { NotFoundException() }
         return mapEntityToDto(foundEntity)
     }
 
-    fun getAllBooks(): List<BookDTO> {
+    fun getAll(): List<BookDTO> {
         val foundEntityList = bookRepository.findAll().toList()
         return foundEntityList.map { mapEntityToDto(it) }
     }

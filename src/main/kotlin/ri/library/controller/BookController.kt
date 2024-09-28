@@ -13,7 +13,7 @@ class BookController(
     val bookService: BookService
 ) {
     @GetMapping("/{id}")
-    fun getBookById(@PathVariable id: String): BookDTO {
-        return bookService.getBookById(id)
+    fun getById(@PathVariable id: String): BookDTO {
+        return bookService.getById(id)
     }
 }
