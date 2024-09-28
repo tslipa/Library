@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service
 import ri.library.entity.OrderEntity
 import ri.library.enum.OrderStatus
 import ri.library.repository.OrderRepository
-import java.util.UUID
+import java.util.*
 
 @Service
 class OrderService(
@@ -20,6 +20,10 @@ class OrderService(
 
     fun deleteOrder(order: OrderEntity) {
         return orderRepository.delete(order)
+    }
+
+    fun getByOrderId(id: String) : Optional<OrderEntity> {
+        return orderRepository.findById(id)
     }
 
     fun getAllOrders(): List<OrderEntity> {
