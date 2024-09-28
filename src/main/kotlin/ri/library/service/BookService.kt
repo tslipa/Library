@@ -1,5 +1,6 @@
 package ri.library.service
 
+import org.springframework.beans.BeanUtils
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.stereotype.Service
 import ri.library.dto.BookDTO
@@ -42,12 +43,14 @@ class BookService(
     }
 
     private fun mapDtoToEntity(dto: BookDTO): BookEntity {
-        // TODO
-        return BookEntity()
+        val entity = BookEntity()
+        BeanUtils.copyProperties(dto, entity)
+        return entity
     }
 
     private fun mapEntityToDto(entity: BookEntity): BookDTO {
-        // TODO
-        return BookDTO()
+        val dto = BookDTO()
+        BeanUtils.copyProperties(entity, dto)
+        return dto
     }
 }

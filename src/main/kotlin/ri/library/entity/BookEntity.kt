@@ -24,7 +24,7 @@ data class BookEntity(
     val publisher: String,
 
     @Column(name = "owner_id")
-    val ownerId: UUID,
+    val ownerId: String,
 
     @Column(name = "description")
     val description: String?,
@@ -36,5 +36,5 @@ data class BookEntity(
     @Column(name = "url")
     val url: String?
 ) {
-    constructor() : this(UUID.randomUUID().toString(), "", "", "", "", UUID.randomUUID(), null, BookStatus.FREE, null)
+    constructor() : this(UUID.randomUUID().toString(), "", "", "", "", "", null, BookStatus.FREE, null)
 }

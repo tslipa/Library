@@ -12,10 +12,10 @@ data class OrderEntity(
     val id: String = UUID.randomUUID().toString(),
 
     @Column(name = "user_id")
-    val userId: UUID,
+    val userId: String,
 
     @Column(name = "book_id")
-    val bookId: UUID,
+    val bookId: String,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -33,5 +33,5 @@ data class OrderEntity(
     @Column(name = "remarks")
     val remarks: String?
 ) {
-    constructor() : this(UUID.randomUUID().toString(), UUID.randomUUID(), UUID.randomUUID(), OrderStatus.NEW, Date().time, null, null, null)
+    constructor() : this(UUID.randomUUID().toString(), "", "", OrderStatus.NEW, Date().time, null, null, null)
 }
