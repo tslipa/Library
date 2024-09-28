@@ -7,22 +7,21 @@ import ri.library.dto.BookDTO
 import ri.library.entity.BookEntity
 import ri.library.enum.BookStatus
 import ri.library.repository.BookRepository
-import java.util.*
 
 @Service
 class BookService(
     private val bookRepository: BookRepository
 ) {
-    fun save(book: BookEntity) : BookDTO {
-        val savedEntity = bookRepository.save(book)
+    fun save(book: BookDTO): BookDTO {
+        val savedEntity = bookRepository.save(mapDtoToEntity(book))
         return mapEntityToDto(savedEntity)
     }
 
-    fun delete(book: BookEntity) {
-        bookRepository.delete(book)
+    fun delete(id: String) {
+        bookRepository.deleteById(id)
     }
 
-    fun getById(id: String) : BookDTO {
+    fun getById(id: String): BookDTO {
         val foundEntity = bookRepository.findById(id).orElseThrow { NotFoundException() }
         return mapEntityToDto(foundEntity)
     }
@@ -37,7 +36,7 @@ class BookService(
         return foundEntityList.map { mapEntityToDto(it) }
     }
 
-    fun getBooksForOwnerId(ownerId: UUID): List<BookDTO> {
+    fun getBooksForOwnerId(ownerId: String): List<BookDTO> {
         val foundEntityList = bookRepository.findByOwnerId(ownerId)
         return foundEntityList.map { mapEntityToDto(it) }
     }

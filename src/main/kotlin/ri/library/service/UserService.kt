@@ -11,13 +11,13 @@ import ri.library.repository.UserRepository
 class UserService(
     private val userRepository: UserRepository
 ) {
-    fun save(user: UserEntity): UserDTO {
-        val savedEntity = userRepository.save(user)
+    fun save(user: UserDTO): UserDTO {
+        val savedEntity = userRepository.save(mapDtoToEntity(user))
         return mapEntityToDto(savedEntity)
     }
 
-    fun delete(user: UserEntity) {
-        userRepository.delete(user)
+    fun delete(id: String) {
+        userRepository.deleteById(id)
     }
 
     fun getById(id: String): UserDTO {

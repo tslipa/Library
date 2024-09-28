@@ -7,19 +7,18 @@ import ri.library.dto.OrderDTO
 import ri.library.entity.OrderEntity
 import ri.library.enum.OrderStatus
 import ri.library.repository.OrderRepository
-import java.util.*
 
 @Service
 class OrderService(
     private val orderRepository: OrderRepository
 ) {
-    fun save(order: OrderEntity): OrderDTO {
-        val savedEntity = orderRepository.save(order)
+    fun save(order: OrderDTO): OrderDTO {
+        val savedEntity = orderRepository.save(mapDtoToEntity(order))
         return mapEntityToDto(savedEntity)
     }
 
-    fun delete(order: OrderEntity) {
-        orderRepository.delete(order)
+    fun delete(id: String) {
+        orderRepository.deleteById(id)
     }
 
     fun getById(id: String): OrderDTO {
@@ -32,12 +31,12 @@ class OrderService(
         return foundEntityList.map { mapEntityToDto(it) }
     }
 
-    fun getOrdersForUser(userId: UUID): List<OrderDTO> {
+    fun getOrdersForUser(userId: String): List<OrderDTO> {
         val foundEntityList = orderRepository.findByUserId(userId)
         return foundEntityList.map { mapEntityToDto(it) }
     }
 
-    fun getCurrentOrdersForUser(userId: UUID): List<OrderDTO> {
+    fun getCurrentOrdersForUser(userId: String): List<OrderDTO> {
         val foundEntityList = orderRepository.findByUserIdAndStatusIn(userId, arrayListOf()) // TODO
         return foundEntityList.map { mapEntityToDto(it) }
     }
