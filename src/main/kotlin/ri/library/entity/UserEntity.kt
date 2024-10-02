@@ -11,22 +11,22 @@ import java.util.*
 data class UserEntity(
     @Id
     @Column(name = "id")
-    val id: String = UUID.randomUUID().toString(),
+    var id: String? = UUID.randomUUID().toString(),
 
     @Column(name = "login")
-    val login: String,
+    var login: String,
 
     @Column(name = "email")
-    val email: String,
+    var email: String,
 
     @Column(name = "password")
-    val password: String,
+    var password: String,
 
     @Column(name = "name")
-    val name: String,
+    var name: String,
 
     @Column(name = "surname")
-    val surname: String
+    var surname: String
 ) {
     constructor() : this(UUID.randomUUID().toString(), "", "", "", "", "")
 }

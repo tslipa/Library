@@ -1,11 +1,12 @@
 package ri.library.service
 
-import org.springframework.beans.BeanUtils
+import org.mapstruct.factory.Mappers
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.stereotype.Service
 import ri.library.dto.BookDTO
 import ri.library.entity.BookEntity
-import ri.library.enum.BookStatus
+import ri.library.enums.BookStatus
+import ri.library.mapper.BookMapper
 import ri.library.repository.BookRepository
 
 @Service
@@ -42,14 +43,12 @@ class BookService(
     }
 
     private fun mapDtoToEntity(dto: BookDTO): BookEntity {
-        val entity = BookEntity()
-        BeanUtils.copyProperties(dto, entity)
-        return entity
+        val bookMapper = Mappers.getMapper(BookMapper::class.java)
+        return bookMapper.mapToEntity(dto)
     }
 
     private fun mapEntityToDto(entity: BookEntity): BookDTO {
-        val dto = BookDTO()
-        BeanUtils.copyProperties(entity, dto)
-        return dto
+        val bookMapper = Mappers.getMapper(BookMapper::class.java)
+        return bookMapper.mapToDto(entity)
     }
 }

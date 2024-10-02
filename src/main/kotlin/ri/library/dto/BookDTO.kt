@@ -1,6 +1,6 @@
 package ri.library.dto
 
-import ri.library.enum.BookStatus
+import ri.library.enums.BookStatus
 
 class BookDTO {
     var id: String? = null

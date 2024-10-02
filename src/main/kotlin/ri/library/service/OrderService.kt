@@ -1,11 +1,12 @@
 package ri.library.service
 
-import org.springframework.beans.BeanUtils
+import org.mapstruct.factory.Mappers
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.stereotype.Service
 import ri.library.dto.OrderDTO
 import ri.library.entity.OrderEntity
-import ri.library.enum.OrderStatus
+import ri.library.enums.OrderStatus
+import ri.library.mapper.OrderMapper
 import ri.library.repository.OrderRepository
 
 @Service
@@ -46,15 +47,13 @@ class OrderService(
     }
 
     private fun mapDtoToEntity(dto: OrderDTO): OrderEntity {
-        val entity = OrderEntity()
-        BeanUtils.copyProperties(dto, entity)
-        return entity
+        val orderMapper = Mappers.getMapper(OrderMapper::class.java)
+        return orderMapper.mapToEntity(dto)
     }
 
     private fun mapEntityToDto(entity: OrderEntity): OrderDTO {
-        val dto = OrderDTO()
-        BeanUtils.copyProperties(entity, dto)
-        return dto
+        val orderMapper = Mappers.getMapper(OrderMapper::class.java)
+        return orderMapper.mapToDto(entity)
     }
 
 }

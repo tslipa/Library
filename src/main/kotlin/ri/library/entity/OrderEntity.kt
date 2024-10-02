@@ -1,7 +1,7 @@
 package ri.library.entity
 
 import jakarta.persistence.*
-import ri.library.enum.OrderStatus
+import ri.library.enums.OrderStatus
 import java.util.*
 
 @Entity
@@ -9,29 +9,29 @@ import java.util.*
 data class OrderEntity(
     @Id
     @Column(name = "id")
-    val id: String = UUID.randomUUID().toString(),
+    var id: String? = UUID.randomUUID().toString(),
 
     @Column(name = "user_id")
-    val userId: String,
+    var userId: String,
 
     @Column(name = "book_id")
-    val bookId: String,
+    var bookId: String,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    val status: OrderStatus,
+    var status: OrderStatus,
 
     @Column(name = "order_date")
-    val orderDate: Long,
+    var orderDate: Long,
 
     @Column(name = "start_date")
-    val startDate: Long?,
+    var startDate: Long?,
 
     @Column(name = "end_date")
-    val endDate: Long?,
+    var endDate: Long?,
 
     @Column(name = "remarks")
-    val remarks: String?
+    var remarks: String?
 ) {
     constructor() : this(UUID.randomUUID().toString(), "", "", OrderStatus.NEW, Date().time, null, null, null)
 }

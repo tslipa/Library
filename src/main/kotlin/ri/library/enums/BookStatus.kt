@@ -1,4 +1,4 @@
-package ri.library.enum
+package ri.library.enums
 
 enum class BookStatus {
     FREE

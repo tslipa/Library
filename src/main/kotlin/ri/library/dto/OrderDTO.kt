@@ -1,6 +1,6 @@
 package ri.library.dto
 
-import ri.library.enum.OrderStatus
+import ri.library.enums.OrderStatus
 
 class OrderDTO {
     var id: String? = null
